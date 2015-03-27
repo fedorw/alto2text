@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e 
+DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+JAR=`ls -1 $DIR/**with-dependencies.jar`
+java  -Xdebug  $DEBUG -Xmx4096m -jar $JAR "$@"
+
