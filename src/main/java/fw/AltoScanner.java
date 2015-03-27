@@ -4,6 +4,7 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.GnuParser;
 import org.apache.commons.cli.Options;
+import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.io.*;
@@ -28,6 +29,11 @@ public class AltoScanner {
         CommandLine cmd = parser.parse(options,args);
         final InputStream input;
 
+	if (!cmd.hasOption("i")) {
+		HelpFormatter form = new HelpFormatter();
+		form.printHelp("altorender",options);
+		System.exit(0);
+	}
         String in=cmd.getOptionValue("i").trim();
         if ("-".equals(in)) {
             input=System.in;
